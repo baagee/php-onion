@@ -1,17 +1,14 @@
-# php-onion 洋葱结构
-php onion layer
+<?php
+/**
+ * Desc:
+ * User: baagee
+ * Date: 2019/3/27
+ * Time: 上午10:58
+ */
+include __DIR__ . '/../vendor/autoload.php';
 
-可以利用它来做中间件，action之前做请求拦截，验证登陆，权限，或者action之后的一些逻辑
-## 图示例：
+// 以下为经过的层
 
-图片源至koa的官方图
-
-![示例](http://www.engkan.com/usr/uploads/2018/09/1470252263.png)
-
-## 使用示例：
-
-### 首先定义要经过层
-```php
 /**
  * Class ReturnJson
  */
@@ -103,13 +100,9 @@ class ALogic extends \BaAGee\Onion\Base\LayerAbstract
         return $ret;
     }
 }
-```
 
-### 使用
-```php
 // 输入的数据
 $input = 'input data; ';
-
 // 经过的层  注意顺序，从前往后执行，然后从后往前一层一层返回
 $through = [
     ReturnJson::class,
@@ -124,10 +117,9 @@ $through = [
         'input' => $input
     ];
 });
-```
 
-### 运行结果
-```
+/*
+ * 运行结果：
 开始 ReturnJson 逻辑
 开始 CatchError 逻辑
 开始 ALogic 逻辑
@@ -140,9 +132,9 @@ $through = [
     "code": 0,
     "message": "",
     "data": {
-        "time": 1553657337,
+        "time": 1553656681,
         "input": "input data; CatchError; ALogic; BLogic; "
     },
-    "request_id": 1553657337
+    "request_id": 1553656681
 }
-```
+ * */
