@@ -26,7 +26,7 @@ abstract class LayerAbstract
      * @param          $data
      * @return mixed
      */
-    final public function exec(\Closure $next, $data)
+    public function exec(\Closure $next, $data)
     {
         $return = $this->handler($next, $data);
         return $return;
